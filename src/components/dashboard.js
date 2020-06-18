@@ -1,41 +1,21 @@
 import React, { Component } from "react";
-import axios from "axios";
 import { connect } from "react-redux";
+import Trending from "./Trending";
+import Search from "./Search";
 
 class Dashboard extends Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      subscriptions: {},
-    };
-  }
-
-  componentDidMount = () => {
-    const accessToken = "Bearer " + this.props.accessToken;
-    axios({
-      method: "get",
-      url:
-        "https://www.googleapis.com/youtube/v3/subscriptions?part=snippet&maxResults=15&mine=true&key=AIzaSyCnFD1-P2y8OPAeVFCF-ZQhTQgGjehtSFk",
-      headers: {
-        Authorization: accessToken,
-      },
-    })
-      .then((res) => {
-        console.log(res);
-        this.setState({
-          subscriptions: res.data.items,
-        });
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  };
-
   render() {
     return (
-      <div className="App">
+      <div>
         <h1>Welcome to Dashboard</h1>
+        <div className="mainvid">
+          <iframe></iframe>
+        </div>
+        <Search />
+        <div className="trending">
+          <h1>Trending Videos</h1>
+          <Trending />
+        </div>
       </div>
     );
   }
