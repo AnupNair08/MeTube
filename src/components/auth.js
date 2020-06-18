@@ -2,13 +2,12 @@ import React, { Component } from "react";
 import firebaseConfig from "./firebaseConfig";
 import * as firebase from "firebase";
 import { connect } from "react-redux";
-import 
 
 class Firebase extends Component {
   signin = () => {
-    const firebaseapp = firebase.initializeApp(firebaseConfig);
+    firebase.initializeApp(firebaseConfig);
     var provider = new firebase.auth.GoogleAuthProvider();
-    provider.addScope("email");
+    provider.addScope("https://www.googleapis.com/auth/youtube.readonly");
 
     firebase
       .auth()

@@ -2,14 +2,15 @@ import React, { Component } from "react";
 import "./App.css";
 import Firebase from "./components/auth";
 import { connect } from "react-redux";
+import Dashboard from "./components/dashboard";
+
 class App extends Component {
   render() {
-    console.log(this.props);
     return (
       <div className="App">
         <h1>Hello</h1>
         <Firebase></Firebase>
-        {this.props.login && <h2>Logged in</h2>}
+        {this.props.login ? <Dashboard /> : <h1></h1>}
       </div>
     );
   }
