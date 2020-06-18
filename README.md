@@ -1,2 +1,2 @@
 # UTube
-Trying a basic youtube clone to package with electron
+Trying a basic youtube clone to work with YouTube API and Redux
