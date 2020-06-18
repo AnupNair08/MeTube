@@ -8,6 +8,7 @@ class Search extends Component {
 
     this.state = {
       query: "",
+      result: [],
     };
   }
   handleChange = (e) => {
@@ -18,33 +19,43 @@ class Search extends Component {
 
   handleSubmit = () => {
     const accessToken = this.props.accessToken;
-    if (!this.state.query) {
-      axios({
-        method: "get",
-        url: `https://www.googleapis.com/youtube/v3/search?part=snippet&q=${this.state.query}&key=AIzaSyCnFD1-P2y8OPAeVFCF-ZQhTQgGjehtSFk`,
-        headers: {
-          Authorization: accessToken,
-        },
-      })
-        .then((res) => {
-          console.log(res);
-        })
-        .catch((err) => {
-          console.log(err);
-          return;
+    axios({
+      method: "get",
+      url: `https://www.googleapis.com/youtube/v3/search?part=snippet&q=${this.state.query}&key=AIzaSyCnFD1-P2y8OPAeVFCF-ZQhTQgGjehtSFk`,
+      headers: {
+        Authorization: accessToken,
+      },
+    })
+      .then((res) => {
+        console.log(res);
+        this.setState({
+          result: res.data.items,
         });
-    } else {
-      return;
-    }
+      })
+      .catch((err) => {
+        console.log(err);
+        return;
+      });
   };
 
   render() {
-    console.log(this.state.query);
+    const result = this.state.result.map((item, key) => {
+      var frame = (
+        <div key={key}>
+          <iframe
+            title={key}
+            src={"https://youtube.com/embed/" + item.id.videoId}
+          ></iframe>
+        </div>
+      );
+      return frame;
+    });
     return (
       <div>
         <h1>Hello from search</h1>
         <input onChange={this.handleChange} value={this.state.query}></input>
         <button onClick={this.handleSubmit}>Search</button>
+        {result}
       </div>
     );
   }
