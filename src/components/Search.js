@@ -9,6 +9,7 @@ class Search extends Component {
     this.state = {
       query: "",
       result: [],
+      nextItem: "",
     };
   }
   handleChange = (e) => {
@@ -30,6 +31,7 @@ class Search extends Component {
         console.log(res);
         this.setState({
           result: res.data.items,
+          nextItem: res.data.nextPageToken,
         });
       })
       .catch((err) => {

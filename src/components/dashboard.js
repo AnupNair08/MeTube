@@ -8,9 +8,7 @@ class Dashboard extends Component {
     return (
       <div>
         <h1>Welcome to Dashboard</h1>
-        <div className="mainvid">
-          <iframe></iframe>
-        </div>
+        <h3>{this.props.user}</h3>
         <Search />
         <div className="trending">
           <h1>Trending Videos</h1>
