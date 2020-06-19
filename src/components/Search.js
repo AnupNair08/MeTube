@@ -18,14 +18,17 @@ class Search extends Component {
     });
   };
 
+  playVideo = (url) => {
+    const screen = document.getElementById("screen");
+    screen.src = "https://youtube.com/embed/" + url + "?autoplay=1";
+    window.scrollTo(0, 0);
+    return;
+  };
+
   handleSubmit = () => {
-    const accessToken = this.props.accessToken;
     axios({
       method: "get",
-      url: `https://www.googleapis.com/youtube/v3/search?part=snippet&q=${this.state.query}&key=AIzaSyCnFD1-P2y8OPAeVFCF-ZQhTQgGjehtSFk`,
-      headers: {
-        Authorization: accessToken,
-      },
+      url: `http://localhost:5000/utube/search/?q=${this.state.query}`,
     })
       .then((res) => {
         console.log(res);
@@ -44,17 +47,19 @@ class Search extends Component {
     const result = this.state.result.map((item, key) => {
       var frame = (
         <div key={key}>
-          <iframe
-            title={key}
-            src={"https://youtube.com/embed/" + item.id.videoId}
-          ></iframe>
+          <img
+            src={item.snippet.thumbnails.high.url}
+            height={"200px"}
+            width={"280px"}
+            alt={item.id}
+            onClick={() => this.playVideo(item.id.videoId)}
+          ></img>
         </div>
       );
       return frame;
     });
     return (
       <div>
-        <h1>Hello from search</h1>
         <input onChange={this.handleChange} value={this.state.query}></input>
         <button onClick={this.handleSubmit}>Search</button>
         {result}

@@ -10,8 +10,7 @@ class App extends Component {
       <div className="App">
         <h1>Hello</h1>
         <Firebase></Firebase>
-        {this.props.login ? <Dashboard /> : <h1></h1>}
-        {/* <Dashboard /> */}
+        {this.props.login ? <Dashboard /> : <h1>Not Logged in</h1>}
       </div>
     );
   }

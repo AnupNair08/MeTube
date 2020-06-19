@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import axios from "axios";
 import { connect } from "react-redux";
 import InfiniteScroll from "react-infinite-scroll-component";
+const config = require("dotenv").config;
 
 class Trending extends Component {
   constructor(props) {
@@ -13,15 +14,11 @@ class Trending extends Component {
   }
 
   componentDidMount = () => {
-    const countryCode = "US";
-    const maxResults = 20;
-    const accessToken = "Bearer " + this.props.accessToken;
+    const maxResults = 5;
+    const regionCode = "US";
     axios({
       method: "get",
-      url: `https://www.googleapis.com/youtube/v3/videos?part=snippet%2CcontentDetails%2Cstatistics&chart=mostPopular&maxResults=${maxResults}&regionCode=${countryCode}&key=AIzaSyCnFD1-P2y8OPAeVFCF-ZQhTQgGjehtSFk`,
-      headers: {
-        Authorization: accessToken,
-      },
+      url: `http://localhost:5000/utube/trending/?max=${maxResults}&reg=${regionCode}`,
     })
       .then((res) => {
         console.log(res);
@@ -36,14 +33,10 @@ class Trending extends Component {
   };
 
   fetchData = (pageToken) => {
-    const countryCode = "US";
-    const accessToken = "Bearer " + this.props.accessToken;
+    const regionCode = "US";
     axios({
       method: "get",
-      url: `https://www.googleapis.com/youtube/v3/videos?part=snippet%2CcontentDetails%2Cstatistics&chart=mostPopular&maxResults=${20}&pageToken=${pageToken}&regionCode=${countryCode}&key=AIzaSyCnFD1-P2y8OPAeVFCF-ZQhTQgGjehtSFk`,
-      headers: {
-        Authorization: accessToken,
-      },
+      url: `http://localhost:5000/utube/trending/?max=20&reg=${regionCode}&pt=${pageToken}`,
     })
       .then((res) => {
         console.log(res);
@@ -57,6 +50,13 @@ class Trending extends Component {
         return;
       });
   };
+
+  playVideo = (url) => {
+    const screen = document.getElementById("screen");
+    screen.src = "https://youtube.com/embed/" + url + "?autoplay=1";
+    window.scrollTo(0, 0);
+    return;
+  };
   render() {
     const video = this.state.videoList.map((item, key) => {
       var frame = (
@@ -66,11 +66,8 @@ class Trending extends Component {
             height={"200px"}
             width={"280px"}
             alt={item.id}
+            onClick={() => this.playVideo(item.id)}
           ></img>
-          {/* <iframe
-            title={key}
-            src={"https://youtube.com/embed/" + item.id}
-          ></iframe> */}
         </div>
       );
       return frame;

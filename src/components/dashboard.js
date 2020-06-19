@@ -10,6 +10,13 @@ class Dashboard extends Component {
         <h1>Welcome to Dashboard</h1>
         <h3>{this.props.user}</h3>
         <Search />
+        <iframe
+          height={"400px"}
+          width={"640px"}
+          title="Screen"
+          id="screen"
+          allowFullScreen={true}
+        ></iframe>
         <div className="trending">
           <h1>Trending Videos</h1>
           <Trending />
