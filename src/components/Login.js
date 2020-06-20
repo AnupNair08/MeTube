@@ -33,8 +33,14 @@ class Firebase extends Component {
 
   render() {
     return (
-      <div className="loginPage">
-        <h1>Hello</h1>
+      <div id="login">
+        <img
+          alt=""
+          src="https://i2.wp.com/www.xadara.com/wp-content/uploads/2016/10/Youtube-sad-face-.png?fit=490%2C284&ssl=1"
+          height={"220px"}
+          width={"300px"}
+        ></img>
+        <h1>MeTube : YouTube but its buggy</h1>
         <GoogleButton onClick={() => this.signin()}></GoogleButton>
       </div>
     );

@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import axios from "axios";
 import "./trending.css";
+import { Card } from "react-bootstrap";
 
 class Search extends Component {
   constructor(props) {
@@ -48,13 +49,16 @@ class Search extends Component {
     const result = this.state.result.map((item, key) => {
       var frame = (
         <div key={key}>
-          <img
-            src={item.snippet.thumbnails.high.url}
-            height={"200px"}
-            width={"280px"}
-            alt={item.id}
+          <Card
+            style={{ width: "18rem" }}
             onClick={() => this.playVideo(item.id.videoId)}
-          ></img>
+          >
+            <Card.Img variant="top" src={item.snippet.thumbnails.high.url} />
+            <Card.Body>
+              <Card.Title>{item.snippet.title}</Card.Title>
+              <Card.Text>{item.snippet.channelTitle}</Card.Text>
+            </Card.Body>
+          </Card>
         </div>
       );
       return frame;
@@ -65,6 +69,7 @@ class Search extends Component {
           <input onChange={this.handleChange} value={this.state.query}></input>
           <button onClick={this.handleSubmit}>Search</button>
         </div>
+
         {result}
       </div>
     );

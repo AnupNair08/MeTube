@@ -1,9 +1,18 @@
-html,
-body {
-  height: 100%;
-  margin: 0;
-}
-.loginPage {
-  position: absolute;
-  height: 100%;
+body > #root > div > #login {
+  height: 100vh;
+  background: rgb(121, 9, 13);
+  background: linear-gradient(
+    90deg,
+    rgba(121, 9, 13, 1) 0%,
+    rgba(2, 0, 36, 1) 55%,
+    rgba(255, 0, 56, 1) 100%
+  );
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  color: white;
+  text-align: center;
+  font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
+    "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
 }

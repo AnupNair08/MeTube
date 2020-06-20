@@ -3,7 +3,8 @@ import axios from "axios";
 import { connect } from "react-redux";
 import InfiniteScroll from "react-infinite-scroll-component";
 import "./trending.css";
-import { Card, Button } from "react-bootstrap";
+import { Card } from "react-bootstrap";
+import "./dashboard.scss";
 
 class Trending extends Component {
   constructor(props) {
@@ -55,8 +56,6 @@ class Trending extends Component {
   playVideo = (url) => {
     const screen = document.getElementById("screen");
     screen.src = "https://youtube.com/embed/" + url + "?autoplay=1";
-    // window.scrollTo(0, 0);
-    return;
   };
   render() {
     const video = this.state.videoList.map((item, key) => {
@@ -76,14 +75,13 @@ class Trending extends Component {
       );
       return frame;
     });
-
     return (
-      <div className="trending">
+      <div>
         <InfiniteScroll
           dataLength={this.state.videoList.length}
           hasMore={true}
           next={() => this.fetchData(this.state.nextItem)}
-          scrollThreshold={1}
+          scrollableTarget={"contentT"}
         />
         {video}
       </div>

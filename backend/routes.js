@@ -18,7 +18,7 @@ router.get("/search", async (req, res) => {
   console.log(req.query);
   const query = req.query.q;
   let result = await fetch(
-    `https://www.googleapis.com/youtube/v3/search?part=snippet&q=${query}&key=AIzaSyCnFD1-P2y8OPAeVFCF-ZQhTQgGjehtSFk`
+    `https://www.googleapis.com/youtube/v3/search?part=snippet&q=${query}&maxResults=20&key=AIzaSyCnFD1-P2y8OPAeVFCF-ZQhTQgGjehtSFk`
   );
   const resultJson = await result.json();
   res.json(resultJson);

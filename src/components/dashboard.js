@@ -3,20 +3,29 @@ import { connect } from "react-redux";
 import Trending from "./Trending";
 import Search from "./Search";
 import "./trending.css";
-import { Navbar, Container, Row, Col, Card, Button } from "react-bootstrap";
+import { Navbar, Card, Button } from "react-bootstrap";
 import { Redirect } from "react-router-dom";
 import * as firebase from "firebase";
+import "./dashboard.scss";
+
 class Dashboard extends Component {
   constructor(props) {
     super(props);
     this.state = {
       login: this.props.login,
+      rightOpen: true,
+      leftOpen: true,
     };
   }
   componentDidMount = () => {
     this.setState({
       login: this.props.login,
     });
+  };
+
+  toggleSidebar = (event) => {
+    let key = `${event.currentTarget.parentNode.id}open`;
+    this.setState({ [key]: !this.state[key] });
   };
   logout = () => {
     firebase
@@ -32,6 +41,8 @@ class Dashboard extends Component {
     this.props.login(false);
   };
   render() {
+    let leftOpen = this.state.leftOpen ? "open" : "closed";
+    let rightOpen = this.state.rightOpen ? "open" : "closed";
     const ele = (
       <div>
         <Navbar sticky="top" bg="dark" variant="dark">
@@ -41,18 +52,41 @@ class Dashboard extends Component {
           </Button>
         </Navbar>
 
-        <Container fluid>
-          <Row>
-            <Col lg={true}>
-              <Search />
-            </Col>
-            <Col xs={6}>
-              <Card style={{ width: "18rem" }}>
-                <Card.Body>
-                  <Card.Title>Welcome</Card.Title>
-                  <Card.Text>This is a clutter free YouTube Clone</Card.Text>
-                </Card.Body>
-              </Card>
+        <div id="layout">
+          <div id="left" className={leftOpen}>
+            <div className="icon" onClick={this.toggleSidebar}>
+              &equiv;
+            </div>
+            <div className={`sidebar ${leftOpen}`}>
+              <div className="header">
+                <h3 className="title">Search bar</h3>
+              </div>
+              <div className="content">
+                <Search></Search>
+              </div>
+            </div>
+          </div>
+
+          <div id="main">
+            <div className="header">
+              <h3
+                className={`
+                      title
+                      ${"left-" + leftOpen}
+                      ${"right-" + rightOpen}
+                  `}
+              >
+                Theatre
+              </h3>
+            </div>
+            <div className="content">
+              <div>
+                <h3>
+                  Welcome to this not so great YouTube clone where you dont have
+                  AI suggested stupid videos. Plan what you what you want to
+                  watch
+                </h3>
+              </div>
               <iframe
                 className="main"
                 height={"400px"}
@@ -61,14 +95,23 @@ class Dashboard extends Component {
                 id="screen"
                 allowFullScreen={true}
               ></iframe>
-            </Col>
-            <Col lg={true}>
-              <div>
+            </div>
+          </div>
+
+          <div id="right" className={rightOpen}>
+            <div className="icon" onClick={this.toggleSidebar}>
+              &equiv;
+            </div>
+            <div className={`sidebar ${rightOpen}`}>
+              <div className="header">
+                <h3 className="title">Trending videos</h3>
+              </div>
+              <div className="content" id="contentT">
                 <Trending />
               </div>
-            </Col>
-          </Row>
-        </Container>
+            </div>
+          </div>
+        </div>
       </div>
     );
 
