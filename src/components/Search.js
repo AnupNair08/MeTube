@@ -61,8 +61,10 @@ class Search extends Component {
     });
     return (
       <div className="search">
-        <input onChange={this.handleChange} value={this.state.query}></input>
-        <button onClick={this.handleSubmit}>Search</button>
+        <div className="searchBar">
+          <input onChange={this.handleChange} value={this.state.query}></input>
+          <button onClick={this.handleSubmit}>Search</button>
+        </div>
         {result}
       </div>
     );

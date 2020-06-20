@@ -3,6 +3,7 @@ import axios from "axios";
 import { connect } from "react-redux";
 import InfiniteScroll from "react-infinite-scroll-component";
 import "./trending.css";
+import { Card, Button } from "react-bootstrap";
 
 class Trending extends Component {
   constructor(props) {
@@ -61,13 +62,16 @@ class Trending extends Component {
     const video = this.state.videoList.map((item, key) => {
       var frame = (
         <div key={key}>
-          <img
-            src={item.snippet.thumbnails.high.url}
-            height={"200px"}
-            width={"280px"}
-            alt={item.id}
+          <Card
+            style={{ width: "18rem" }}
             onClick={() => this.playVideo(item.id)}
-          ></img>
+          >
+            <Card.Img variant="top" src={item.snippet.thumbnails.high.url} />
+            <Card.Body>
+              <Card.Title>{item.snippet.title}</Card.Title>
+              <Card.Text>{item.snippet.channelTitle}</Card.Text>
+            </Card.Body>
+          </Card>
         </div>
       );
       return frame;
