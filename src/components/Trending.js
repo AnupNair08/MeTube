@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import axios from "axios";
 import { connect } from "react-redux";
 import InfiniteScroll from "react-infinite-scroll-component";
-const config = require("dotenv").config;
+import "./trending.css";
 
 class Trending extends Component {
   constructor(props) {
@@ -54,7 +54,7 @@ class Trending extends Component {
   playVideo = (url) => {
     const screen = document.getElementById("screen");
     screen.src = "https://youtube.com/embed/" + url + "?autoplay=1";
-    window.scrollTo(0, 0);
+    // window.scrollTo(0, 0);
     return;
   };
   render() {

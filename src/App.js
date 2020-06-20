@@ -1,16 +1,25 @@
 import React, { Component } from "react";
 import "./App.css";
-import Firebase from "./components/auth";
+import Firebase from "./components/Login";
 import { connect } from "react-redux";
 import Dashboard from "./components/dashboard";
+import { Route, Redirect } from "react-router-dom";
 
 class App extends Component {
   render() {
     return (
       <div className="App">
-        <h1>Hello</h1>
-        <Firebase></Firebase>
-        {this.props.login ? <Dashboard /> : <h1>Not Logged in</h1>}
+        <Route exact path="/login" component={Firebase}></Route>
+        <Route exact path="/dashboard" component={Dashboard}></Route>
+        {this.props.login ? (
+          <Redirect
+            to={{
+              pathname: "/dashboard",
+            }}
+          />
+        ) : (
+          <Redirect to={{ pathname: "/login" }} />
+        )}
       </div>
     );
   }

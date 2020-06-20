@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import axios from "axios";
+import "./trending.css";
 
 class Search extends Component {
   constructor(props) {
@@ -59,7 +60,7 @@ class Search extends Component {
       return frame;
     });
     return (
-      <div>
+      <div className="search">
         <input onChange={this.handleChange} value={this.state.query}></input>
         <button onClick={this.handleSubmit}>Search</button>
         {result}

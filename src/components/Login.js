@@ -25,10 +25,12 @@ class Firebase extends Component {
         console.log(err);
       });
   };
+
   render() {
+    console.log(this.props);
     return (
       <div>
-        <p>Hi from Firebase</p>
+        <h1>Hello</h1>
         <button onClick={() => this.signin()}>Click Here</button>
       </div>
     );
