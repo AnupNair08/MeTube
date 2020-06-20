@@ -8,7 +8,7 @@ import { Route, Redirect } from "react-router-dom";
 class App extends Component {
   render() {
     return (
-      <div className="App">
+      <div>
         <Route exact path="/login" component={Firebase}></Route>
         <Route exact path="/dashboard" component={Dashboard}></Route>
         {this.props.login ? (
