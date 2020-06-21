@@ -20,11 +20,21 @@ class Search extends Component {
     });
   };
 
-  playVideo = (url) => {
+  playVideo = (item) => {
+    const url = item.id.videoId;
+    // const stats = item.statistics;
+    const snippet = item.snippet;
     const screen = document.getElementById("screen");
     screen.src = "https://youtube.com/embed/" + url + "?autoplay=1";
-    window.scrollTo(0, 0);
-    return;
+    // const numbers = document.getElementById("view");
+    const title = document.getElementById("titlevid");
+
+    // numbers.textContent = `Views : ${Math.floor(
+    //   stats.viewCount / 1000
+    // )}k   Likes : ${Math.floor(
+    //   stats.likeCount / 1000
+    // )}k  Dislikes : ${Math.floor(stats.dislikeCount / 1000)}k`;
+    title.textContent = snippet.title;
   };
 
   handleSubmit = () => {
@@ -49,10 +59,7 @@ class Search extends Component {
     const result = this.state.result.map((item, key) => {
       var frame = (
         <div key={key}>
-          <Card
-            style={{ width: "18rem" }}
-            onClick={() => this.playVideo(item.id.videoId)}
-          >
+          <Card style={{ width: "18rem" }} onClick={() => this.playVideo(item)}>
             <Card.Img variant="top" src={item.snippet.thumbnails.high.url} />
             <Card.Body>
               <Card.Title>{item.snippet.title}</Card.Title>

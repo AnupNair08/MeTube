@@ -34,3 +34,10 @@
   position: relative;
   top: 0;
 }
+
+.tpage {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}

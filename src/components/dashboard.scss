@@ -25,6 +25,10 @@ body {
 
   // Style in common for sidebars and main area:
   .header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
     position: relative;
     height: var(--header-height);
     text-align: center; // Horizontal center
@@ -35,7 +39,7 @@ body {
     }
   }
   .content {
-    overflow: auto;
+    overflow: scroll;
     justify-content: center;
     // box-sizing: border-box;
     height: calc(100vh - var(--header-height));
@@ -50,6 +54,10 @@ body {
   .content::-webkit-scrollbar {
     display: none;
   }
+}
+
+.info {
+  color: white;
 }
 
 // Main area specific style:

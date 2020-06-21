@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import Trending from "./Trending";
 import Search from "./Search";
 import "./trending.css";
-import { Navbar, Card, Button } from "react-bootstrap";
+import { Navbar, Button } from "react-bootstrap";
 import { Redirect } from "react-router-dom";
 import * as firebase from "firebase";
 import "./dashboard.scss";
@@ -80,13 +80,6 @@ class Dashboard extends Component {
               </h3>
             </div>
             <div className="content">
-              <div className="textbody">
-                <h3>
-                  Welcome to this not so great YouTube clone where you dont have
-                  AI suggested stupid videos. Plan what you what you want to
-                  watch
-                </h3>
-              </div>
               <iframe
                 className="main"
                 height={"400px"}
@@ -95,6 +88,10 @@ class Dashboard extends Component {
                 id="screen"
                 allowFullScreen={true}
               ></iframe>
+              <div className="info">
+                <h3 id="titlevid"></h3>
+                <h3 id="view"></h3>
+              </div>
             </div>
           </div>
 
