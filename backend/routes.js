@@ -8,7 +8,7 @@ router.get("/trending", async (req, res) => {
   const regionCode = req.query.reg ? req.query.reg : "US";
   const pageToken = req.query.pt ? "&pageToken=" + req.query.pt : "";
   let result = await fetch(
-    `https://www.googleapis.com/youtube/v3/videos?part=snippet%2CcontentDetails%2Cstatistics&chart=mostPopular&maxResults=${maxResults}&regionCode=${regionCode}${pageToken}&key=AIzaSyCnFD1-P2y8OPAeVFCF-ZQhTQgGjehtSFk`
+    `https://www.googleapis.com/youtube/v3/videos?part=snippet%2CcontentDetails%2Cstatistics&chart=mostPopular&maxResults=${maxResults}&regionCode=${regionCode}${pageToken}&key=[YOUR_API_KEY]`
   );
   const resultJson = await result.json();
   res.json(resultJson);
@@ -18,7 +18,7 @@ router.get("/search", async (req, res) => {
   console.log(req.query);
   const query = req.query.q;
   let result = await fetch(
-    `https://www.googleapis.com/youtube/v3/search?part=snippet&q=${query}&maxResults=20&key=AIzaSyCnFD1-P2y8OPAeVFCF-ZQhTQgGjehtSFk`
+    `https://www.googleapis.com/youtube/v3/search?part=snippet&q=${query}&maxResults=20&key=[YOUR_API_KEY]`
   );
   const resultJson = await result.json();
   res.json(resultJson);
