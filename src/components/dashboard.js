@@ -24,7 +24,7 @@ class Dashboard extends Component {
   };
 
   toggleSidebar = (event) => {
-    let key = `${event.currentTarget.parentNode.id}open`;
+    let key = `${event.currentTarget.parentNode.id}Open`;
     this.setState({ [key]: !this.state[key] });
   };
   logout = () => {
@@ -46,7 +46,7 @@ class Dashboard extends Component {
     const ele = (
       <div>
         <Navbar sticky="top" bg="dark" variant="dark">
-          <Navbar.Brand href="#home">UTube</Navbar.Brand>
+          <Navbar.Brand href="#home">MeTube</Navbar.Brand>
           <Button variant="outline-success" onClick={this.logout}>
             Logout
           </Button>
@@ -80,7 +80,7 @@ class Dashboard extends Component {
               </h3>
             </div>
             <div className="content">
-              <div>
+              <div className="textbody">
                 <h3>
                   Welcome to this not so great YouTube clone where you dont have
                   AI suggested stupid videos. Plan what you what you want to
@@ -90,7 +90,7 @@ class Dashboard extends Component {
               <iframe
                 className="main"
                 height={"400px"}
-                width={"640px"}
+                width={"100%"}
                 title="Screen"
                 id="screen"
                 allowFullScreen={true}

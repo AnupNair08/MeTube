@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import axios from "axios";
 import "./trending.css";
-import { Card } from "react-bootstrap";
+import { Card, InputGroup, Button, FormControl } from "react-bootstrap";
 
 class Search extends Component {
   constructor(props) {
@@ -66,8 +66,20 @@ class Search extends Component {
     return (
       <div className="search">
         <div className="searchBar">
-          <input onChange={this.handleChange} value={this.state.query}></input>
-          <button onClick={this.handleSubmit}>Search</button>
+          <InputGroup className="mb-3">
+            <FormControl
+              placeholder="Search for some video"
+              aria-label="Search for some video"
+              aria-describedby="basic-addon2"
+              onChange={this.handleChange}
+              value={this.state.query}
+            />
+            <InputGroup.Append>
+              <Button variant="outline-secondary" onClick={this.handleSubmit}>
+                Search
+              </Button>
+            </InputGroup.Append>
+          </InputGroup>
         </div>
 
         {result}
