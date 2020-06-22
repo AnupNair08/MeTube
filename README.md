@@ -13,3 +13,5 @@ cd backend
 nodemon server.js
 ```
 ## Uses React,Redux, Firebase, YouTube API v3
+
+#### *Few changes not added yet
